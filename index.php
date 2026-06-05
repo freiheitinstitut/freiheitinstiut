@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freiheit Institut - NEWS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* 기본 스타일 리셋 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #222222;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 고정형 상단 Navbar (정중앙 정렬 세팅) */
+        header {
+            width: 100%;
+            border-bottom: 1px solid #e9ecef;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #ffffff;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: center; /* 자식 요소를 무조건 가로 정중앙 배치 */
+            align-items: center;
+        }
+        
+        /* 로고 영역 (images.png 가로 매칭 및 중앙 고정) */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+        .logo-area img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* 메인 Content 영역 */
+        .main-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 120px 20px 60px 20px; /* 상단 고정 헤더 영역 확보 */
+            flex: 1; /* 푸터 하단 고정용 */
+        }
+
+        /* 뉴스 섹션 카드 */
+        .news-card {
+            background-color: #ffffff;
+            border: 0px solid #e9ecef;
+            border-radius: 12px;
+            padding: 40px;
+          
+        }
+        .section-header {
+    
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #002D62;
+            letter-spacing: -0.5px;
+        }
+        .section-header i {
+            color: #004B9E;
+            font-size: 20px;
+        }
+
+        /* 뉴스 리스트 스타일 */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .news-item {
+            display: block;
+            padding: 24px 0;
+            border-bottom: 1px solid #f1f3f5;
+            transition: transform 0.2s ease;
+        }
+        .news-item:first-child {
+            padding-top: 0;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        /* 호버 애니메이션 (오른쪽으로 스무스하게 밀림) */
+        .news-item:hover {
+
+        }
+        .news-item:hover .news-item-title {
+            color: #004B9E;
+        }
+        
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .news-tag {
+            font-size: 11px;
+            font-weight: 700;
+            background-color: #e3fafc;
+            color: #0c8599;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .news-date {
+            font-size: 13px;
+            color: #868e96;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .news-item-title {
+            font-size: 17px;
+            font-weight: 500;
+            color: #212529;
+            line-height: 1.4;
+            letter-spacing: -0.4px;
+            transition: color 0.2s ease;
+        }
+
+        /* 하단 Footer */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #e9ecef;
+            padding: 30px 20px;
+            width: 100%;
+        }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #868e96;
+        }
+
+        /* 📱 모바일 최적화 레이아웃 */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 14px 20px; /* 불필요한 패딩 가파르게 쳐냄 */
+            }
+            .logo-area {
+                height: 40px; /* 모바일 전용 로고 크기 컴팩트화 */
+            }
+            .main-container {
+                padding-top: 90px; /* 헤더 높이가 낮아진 만큼 밀착 고정 */
+                padding-bottom: 40px;
+            }
+            .news-card {
+                padding: 25px 20px;
+            }
+            .section-title {
+                font-size: 19px;
+            }
+            .news-item {
+                padding: 20px 0;
+            }
+            .news-item-title {
+                font-size: 15px;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+                font-size: 12px;
+            }
+        }
+/* 🏢 하단 푸터 전면 개편 (로고 + 연락처 + 카피라이트 구조) */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #e9ecef;
+            padding: 40px 20px;
+            width: 100%;
+        }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* 좌우 상단 라인 맞춤 */
+            gap: 30px;
+        }
+        
+        /* 푸터 좌측 로고 영역 */
+        .footer-logo {
+            height: 28px; /* 헤더보다 살짝 작게 조절하여 안정감 부여 */
+            display: flex;
+            align-items: center;
+        }
+        .footer-logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.85; /* 본문보다 살짝 톤다운 */
+        }
+
+        /* 푸터 우측 정보 영역 */
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* 우측 정렬 */
+            gap: 8px;
+            font-size: 13px;
+            color: #666666;
+        }
+        .footer-contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 15px;
+            font-weight: 400;
+        }
+        .footer-contact span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .footer-contact i {
+            color: #868e96;
+        }
+        .footer-copyright {
+            font-size: 12px;
+            color: #999999;
+            margin-top: 4px;
+        }
+
+        /* 📱 모바일 최적화 레이아웃 변환 */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 14px 20px;
+            }
+            .logo-area {
+                height: 28px;
+            }
+            .main-container {
+                padding-top: 90px;
+                padding-bottom: 40px;
+            }
+            .news-card {
+                padding: 25px 20px;
+            }
+            .section-title {
+                font-size: 19px;
+            }
+            .news-item {
+                padding: 20px 0;
+            }
+            .news-item-title {
+                font-size: 15px;
+            }
+            
+            /* 모바일 푸터는 중앙 집중형 수직 정렬로 변환 */
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                text-align: center;
+            }
+            .footer-info {
+                align-items: center;
+            }
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-area">
+                <img src="images.png" alt="Freiheit Institut">
+            </a>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <div class="news-card">
+            <div class="section-header">
+                <i class="fas fa-bullhorn"></i>
+                <h1 class="section-title">Overview</h1>
+            </div>
+
+            <div class="news-list">
+                
+     
+
+
+                    <div class="news-meta">
+                     프라이하이트 인스티튜트(Freiheit Institut)는 충청남도 서산시를 기반으로 영농 활동 및 식량 자원 연구를 수행하는 농업법인입니다.
+
+본 기관은 기후 변화와 지역 생태계 데이터를 바탕으로 지속 가능한 스마트 농업 모델을 실증하며, 축적된 데이터를 통해 선진 순환형 농업 솔루션을 구축해 나가고 있습니다.
+                    </div>
+        
+
+
+
+</main>
+<footer>
+        <div class="footer-content">
+            <!-- 좌측: 로고 배치 -->
+            <div class="footer-logo">
+                <img src="images.png" alt="Freiheit Institut">
+            </div>
+            
+            <!-- 우측: 연락처 및 주소, 카피라이트 -->
+            <div class="footer-info">
+                <div class="footer-contact">
+                    <span><i class="fas fa-map-marker-alt"></i> 충청남도 서산시 운산면</span>
+                    <span><i class="fas fa-envelope"></i> webmaster@freiheitinstiut.com</span>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2026 FREIHEIT INSTITUT. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
